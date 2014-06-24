@@ -127,13 +127,15 @@ static NSString * genRandStringLength(int len)
 		[[NSFileManager defaultManager] createDirectoryAtPath:[[Preferences sharedInstance] ipaDirectory] withIntermediateDirectories:YES attributes:nil error:nil];
 	}
     
+    NSString * appName = [_app.applicationDisplayName stringByReplacingOccurrencesOfString: @" " withString: @"_"];
+    
 	if ([[Preferences sharedInstance] addMinOS])
 	{
-		_ipapath = [NSString stringWithFormat:@"%@%@-v%@-%@-iOS%@-(Clutch-%@).ipa", crackedPath, _app.applicationDisplayName, _app.applicationVersion, crackerName, _app.minimumOSVersion , [NSString stringWithUTF8String:CLUTCH_VERSION]];
+		_ipapath = [NSString stringWithFormat:@"%@%@-v%@-%@-iOS.ipa", crackedPath, appName, _app.applicationVersion, _app.minimumOSVersion];
 	}
 	else
 	{
-		_ipapath = [NSString stringWithFormat:@"%@%@-v%@-%@-(Clutch-%@).ipa", crackedPath, _app.applicationDisplayName, _app.applicationVersion, crackerName, [NSString stringWithUTF8String:CLUTCH_VERSION]];
+		_ipapath = [NSString stringWithFormat:@"%@%@-v%@.ipa", crackedPath, appName, _app.applicationVersion];
 	}
     
 	DEBUG(_ipapath);

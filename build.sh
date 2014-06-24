@@ -3,12 +3,12 @@
 # Credits to Tatsh
 
 # Default Xcode
-#BUILD=$(which xcodebuild)
+BUILD=$(which xcodebuild)
 SDK="iphoneos7.1"
 
 # Xcode6-Beta
-BUILD="/Applications/Xcode6-Beta.app/Contents/Developer/usr/bin/xcodebuild"
-SDK="iphoneos8.0"
+#BUILD="/Applications/Xcode6-Beta2.app/Contents/Developer/usr/bin/xcodebuild"
+#SDK="iphoneos8.0"
 
 $BUILD clean install
 
