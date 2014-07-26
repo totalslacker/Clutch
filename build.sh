@@ -12,7 +12,7 @@ SDK="iphoneos7.1"
 
 $BUILD clean install
 
-$BUILD ARCHS='armv7 armv7s arm64' ONLY_ACTIVE_ARCH=NO -sdk "$SDK" -configuration Release -alltargets clean
+#$BUILD ARCHS='armv7 armv7s arm64' ONLY_ACTIVE_ARCH=NO -sdk "$SDK" -configuration Release -alltargets clean
 
 # Uncomment to enable CLUTCH_DEBUG and DEV with release
 $BUILD ARCHS='armv7 armv7s arm64' ONLY_ACTIVE_ARCH=NO -sdk "$SDK" -configuration Release -alltargets CLUTCH_DEV=1

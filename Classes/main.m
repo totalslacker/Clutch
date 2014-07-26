@@ -508,6 +508,21 @@ int main(int argc, char *argv[])
 				retVal = cmd_crack_all(applist);
 				goto endMain;
 			}
+			else if ([arg isEqualToString:@"-o"])
+			{
+				if (arguments.count < 1)
+				{
+					printf("%s %s requires 1 arguments (%d found).\n", argv[0], [arg UTF8String], (int)(arguments.count - 2));
+                    
+					return retVal;
+				}
+                
+                i++;
+				NSString *outbinary = arguments[i++];
+                printf("set outbinary=%s\n", [outbinary UTF8String]);
+               
+				continue;
+			}
 			else if ([arg isEqualToString:@"-e"])
 			{
 				if (arguments.count != 4)
