@@ -360,7 +360,7 @@
 					armv7s,
 				);
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -383,6 +383,7 @@
 					"$(SRCROOT)",
 				);
 				PRODUCT_NAME = Clutch;
+				SDKROOT = iphoneos7.1;
 			};
 			name = Debug;
 		};
@@ -396,7 +397,7 @@
 					armv7s,
 				);
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -418,6 +419,7 @@
 				);
 				"OTHER_LDFLAGS[arch=*]" = "-all_load";
 				PRODUCT_NAME = Clutch;
+				SDKROOT = iphoneos7.1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
