@@ -2,17 +2,20 @@
 # Clutch xcodebuild script
 # Credits to Tatsh
 
-# Default Xcode
-BUILD=$(which xcodebuild)
-SDK="iphoneos7.1"
+# Prefer Xcode 6
+[ -d '/Applications/Xcode6-Beta.app' ] && \
+    BUILD='/Applications/Xcode6-Beta.app/Contents/Developer/usr/bin/xcodebuild' && \
+    SDK='iphoneos8.0'
 
-# Xcode6-Beta
-#BUILD="/Applications/Xcode6-Beta2.app/Contents/Developer/usr/bin/xcodebuild"
-#SDK="iphoneos8.0"
+# Default Xcode
+if [ -z "$BUILD" ]; then
+    BUILD=$(which xcodebuild)
+    SDK='iphoneos7.1'
+fi
 
 $BUILD clean install
 
-#$BUILD ARCHS='armv7 armv7s arm64' ONLY_ACTIVE_ARCH=NO -sdk "$SDK" -configuration Release -alltargets clean
+$BUILD ARCHS='armv7 armv7s arm64' ONLY_ACTIVE_ARCH=NO -sdk "$SDK" -configuration Release -alltargets clean
 
 # Uncomment to enable CLUTCH_DEBUG and DEV with release
 $BUILD ARCHS='armv7 armv7s arm64' ONLY_ACTIVE_ARCH=NO -sdk "$SDK" -configuration Release -alltargets CLUTCH_DEV=1
