@@ -129,13 +129,16 @@ static NSString * genRandStringLength(int len)
     
     NSString * appName = [_app.applicationDisplayName stringByReplacingOccurrencesOfString: @" " withString: @"_"];
     
+    // SAH: Just hard code appName
+    appName = @"cracked_app";
+    
 	if ([[Preferences sharedInstance] addMinOS])
 	{
-		_ipapath = [NSString stringWithFormat:@"%@%@-v%@-%@-iOS.ipa", crackedPath, appName, _app.applicationVersion, _app.minimumOSVersion];
+		_ipapath = [NSString stringWithFormat:@"%@%@.ipa", crackedPath, appName];
 	}
 	else
 	{
-		_ipapath = [NSString stringWithFormat:@"%@%@-v%@.ipa", crackedPath, appName, _app.applicationVersion];
+		_ipapath = [NSString stringWithFormat:@"%@%@.ipa", crackedPath, appName];
 	}
     
 	DEBUG(_ipapath);

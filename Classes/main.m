@@ -240,7 +240,8 @@ int cmd_crack_all(NSArray *applications)
             
 			crack = TRUE;
             
-			printf("\t%s\n", [ipapath UTF8String]);
+            printf("\t%s\n", [ipapath UTF8String]);
+            printf("OK:\t%s\n", [ipapath UTF8String]);
             
 			[successfulCracks addObject:app.applicationName];
 		}
@@ -299,6 +300,7 @@ int cmd_crack_app(Application *app, BOOL skip_64)
 		crack = TRUE;
         
 		printf("\t%s\n", [ipapath UTF8String]);
+        printf("OK:\t%s\n", [ipapath UTF8String]);
         
 		[successfulCracks addObject:app.applicationName];
 		[cracker release];
