@@ -16,9 +16,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /*
-___ _       _       _
-/ __\ |_   _| |_ ___| |__
-/ /  | | | | | __/ __| '_ \
+...___ _       _       _
+../ __\ |_   _| |_ ___| |__
+./ /  | | | | | __/ __| '_ \
 / /___| | |_| | || (__| | | |
 \____/|_|\__,_|\__\___|_| |_|
  
@@ -270,9 +270,18 @@ int cmd_crack_specific_binary(NSString *inbinary, NSString *outbinary)
     
 	DEBUG(@"outbinary %@", outbinary);
     
-	[binary crackBinaryToFile:outbinary error:nil];
+	BOOL success = [binary crackBinaryToFile:outbinary error:nil];
     
-	DEBUG(@"apparently crack was ok!?");
+    if (success)
+    {
+        [successfulCracks addObject:outbinary];
+        DEBUG(@"apparently crack was ok!?");
+    }
+    else
+    {
+        [failedCracks addObject:outbinary];
+        DEBUG(@"apparently crack wasn't ok!?");
+    }
     
 	[binary release];
     
@@ -636,5 +645,4 @@ int main(int argc, char *argv[])
 		return retVal;
 	}
 }
-
 

@@ -9,21 +9,36 @@
 #import "Application.h"
 #import "Binary.h"
 
+@interface Plugin ()
+{
+    
+}
+
+@end
+
+@implementation Plugin
+
+@end
+
 @interface Application ()
 {
     
-    NSString *applicationContainer,    // /private/var/mobile/Applications/C320A08E-1295-4F40-8B4F-9D8A5634CE92/
+    NSString *applicationContainer,    // /private/var/mobile/Applications/$UUID/ OR /private/var/mobile/Container/Application/$UUID
     *applicationDisplayName,           // what you see on SpringBoard
-    *applicationName,                  // AppAddict.app - .app = AppAddict
-    *appDirectory,                     // AppAddict.app
+    *applicationName,                  // SuperMonkeyBall.app - .app = SuperMonkeyBall
+    *appDirectory,                     // SuperMoneyBall.app
     *realUniqueID,                     // C320A08E-1295-4F40-8B4F-9D8A5634CE92
     *applicationVersion,               // 1.0
     *applicationBundleID,              // com.apple.purpleshit
-    *applicationExecutableName,        // Clutch-1.3.2-git4
+    *applicationExecutableName,        // Clutch-1.4.7
     *minimumOSVersion;                 // 4.3
     
+    BOOL hasPlugin;
+    
+    NSArray *plugins;                  // Array of Plugins
+    
     NSData *applicationSINF;           // NSData of /SC_Info/$(applicationExecutableName).sinf
-    UIImage *applicationIcon;
+    UIImage *applicationIcon;          // 
 
     NSDictionary *dictRep;             // NSDictionary representation of all stuff above,except applicationIcon(UIImage)
 }
@@ -36,6 +51,7 @@
 {
     
     if (self = [super init]) {
+        // Application
         applicationContainer = info[@"ApplicationContainer"];
         applicationDisplayName = info[@"ApplicationDisplayName"];
         applicationName = info[@"ApplicationName"];
@@ -46,6 +62,18 @@
         applicationExecutableName = info[@"ApplicationExecutableName"];
         applicationSINF = info[@"ApplicationSINF"];
         minimumOSVersion = info[@"MinimumOSVersion"];
+        
+        // Extension
+        if ([info[@"PlugIn"]  isEqual: @YES])
+        {
+            hasPlugin = YES;
+            
+            plugins = info[@"PlugIns"];
+        }
+        else
+        {
+            hasPlugin = NO;
+        }
 
         NSMutableDictionary* copy = [[NSMutableDictionary alloc] initWithDictionary:info];
         [copy removeObjectForKey:@"ApplicationSINF"]; //slow
@@ -114,6 +142,15 @@
     return minimumOSVersion;
 }
 
+- (NSArray *)plugins
+{
+    return plugins;
+}
+
+- (BOOL)hasPlugin
+{
+    return hasPlugin;
+}
 
 - (NSDictionary *)dictionaryRepresentation
 {

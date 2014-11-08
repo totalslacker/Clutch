@@ -31,6 +31,7 @@
 
 - (instancetype)initWithAppInfo:(NSDictionary *)info;
 
+// Application
 - (NSString *)appDirectory;
 - (NSString *)applicationContainer;
 - (NSString*) applicationDirectory;
@@ -44,7 +45,21 @@
 - (UIImage *)applicationIcon;
 - (NSData *)applicationSINF;
 - (NSInteger)appVersion;
+- (NSArray *)plugins;
+- (BOOL)hasPlugin;
 
+
+
+// Internal Clutch thing
 - (NSDictionary *)dictionaryRepresentation;
+
+@end
+
+@interface Plugin : NSObject
+
+// Properties
+@property (nonatomic, retain) NSString *pluginPath;
+@property (nonatomic, retain) NSString *pluginName;
+@property (nonatomic, retain) NSString *pluginExecutableName;
 
 @end
